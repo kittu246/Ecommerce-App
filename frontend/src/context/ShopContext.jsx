@@ -86,6 +86,7 @@ const ShopContextProvider = (props) => {
     let totalPrice = 0;
     for (const items in cartItems) {
       const productInfo = products.find((item) => item._id === items);
+        if (!productInfo) continue;
       for (const size in cartItems[items]) {
         if (cartItems[items][size] > 0) {
           totalPrice += productInfo.price * cartItems[items][size];
@@ -118,7 +119,7 @@ const ShopContextProvider = (props) => {
 
       const response = await axios.post(backendUrl+"/api/cart/get",{},{headers:{token:token}});
       if(response.data.success){
-        setCartItems(response.data.cartData);
+        setCartItems(response.data.cartData || {});
       }
       else{
         toast.error(response.data.message);
