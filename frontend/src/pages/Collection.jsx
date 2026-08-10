@@ -153,7 +153,7 @@ useEffect(()=>{
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
 
           {filterProducts.map((item,index)=>(
-            <ProductItem id={index} name={item.name} image={item.image} price={item.price} />
+            <ProductItem id={item._id} name={item.name} image={item.image} price={item.price} />
           ))}
 
 
